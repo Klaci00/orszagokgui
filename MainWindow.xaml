@@ -6,26 +6,112 @@
         xmlns:local="clr-namespace:WPF2"
         mc:Ignorable="d"
         Title="Országok" Height="450" Width="800">
-    <Grid>
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="assets/images/bg.jpg"></ImageBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition  Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1">
-            <Button x:Name="btnFeladat1" Content="A kiválasztott ország" Height="20" Margin="10" Click="btnFeladat1_Click"/>
-            <Button x:Name="btnFeladat2" Content="ABC ország" Height="20" Margin="10" Click="btnFeladat2_Click"/>
-            <Button x:Name="btnFeladat3" Content="Csak O és FV nagy" Height="20" Margin="10" Click="btnFeladat3_Click"/>
-            <Button x:Name="btnFeladat4" Content="A legördülőből" Height="20" Margin="10" Click="btnFeladat4_Click"/>
+            <Button x:Name="btnFeladat1" Content="A kiválasztott ország" Height="50" Margin="10" Click="btnFeladat1_Click" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <Button x:Name="btnFeladat2" Content="ABC ország" Height="50" Margin="10" Click="btnFeladat2_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <Button x:Name="btnFeladat3" Height="50" Margin="10" Click="btnFeladat3_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="Csak Országnév és Főváros nagybetűvel" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+            </Button>
+            <Button x:Name="btnFeladat4" Content="A legördülőből" Height="50" Margin="10" Click="btnFeladat4_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
         </StackPanel>
 
         <StackPanel Grid.Column="2">
-            <TextBox x:Name="txtFeladat1" Text="dsfds" Height="20" Margin="10"/>
-            <Button x:Name="btnFeladat5" Content="F páratlan b-t" Height="20" Margin="10" Click="btnFeladat5_Click"/>
-            <Button x:Name="btnFeladat6" Content="Területkisebb" Height="20" Margin="10" Click="btnFeladat6_Click"/>
-            <ComboBox x:Name="cmb" Margin="10" Height="20" SelectedIndex="0"/>
+            <TextBox x:Name="txtFeladat1" Text="Keresés..." Height="50" Margin="10" VerticalAlignment="Center" GotFocus="txtFeladat1_GotFocus" LostFocus="txtFeladat1_LostFocus"/>
+            <Button x:Name="btnFeladat5" Height="50" Margin="10" Click="btnFeladat5_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <TextBlock Text="Fővárosa lakossága páratlan, és b-t tartalmaz" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            </Button>
+            <Button x:Name="btnFeladat6" Height="50" Margin="10" Click="btnFeladat6_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <TextBlock Text="Magyarországétól kisebb területű országok" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            </Button>
+
+            <ComboBox x:Name="cmb" Margin="10" Height="50" SelectedIndex="0" VerticalAlignment="Center"/>
         </StackPanel>
-        <DataGrid x:Name="dtg1"  Margin="5"/>
+        <DataGrid x:Name="dtg1"  Margin="5" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Országnév" Binding="{Binding Orszagnev}"/>
+                <DataGridTextColumn Header="Terület" Binding="{Binding Terulet}"/>
+                <DataGridTextColumn Header="Népesség" Binding="{Binding Nepesseg}"/>
+                <DataGridTextColumn Header="Főváros" Binding="{Binding Fovaros}"/>
+                <DataGridTextColumn Header="Főváros népessége" Binding="{Binding Fovnepessege}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

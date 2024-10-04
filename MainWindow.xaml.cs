@@ -44,6 +44,7 @@ namespace WPF2
             // Házi feladat lenne ezt megírni LINQ nélkül,
             // figyelembe véve a comboboxos megoldásnál alkalmazott módszert!!!
             // pont azt kell csinálni itt is!
+
             //kész,mostmár országnév részletre is lehet keresni kisbetűvel pl "magy"
             var a = adatok.Where(x=>x.Orszagnev.ToLower() == txtFeladat1.Text.ToLower()).ToList();
             List<Orszag> b = new List<Orszag>();
@@ -144,6 +145,28 @@ namespace WPF2
             int terulet = m[0].Terulet;
             var kisebb = adatok.Count(x=>x.Terulet < terulet);
             MessageBox.Show(kisebb.ToString());
+        }
+
+        private void txtFeladat1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox.Text == "Keresés...")
+            {
+                textBox.Text = string.Empty;
+            }
+
+        }
+
+        
+
+        private void txtFeladat1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "Keresés...";
+            }
+
         }
     }
 }
